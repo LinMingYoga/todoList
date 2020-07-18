@@ -9,6 +9,9 @@ class ListItem extends Component {
   delItem(index) {
     this.props.delItem(index)
   }
+  componentWillUnmount() {
+    console.log('ddddd');
+  }
   render() { 
     return (
       <div>

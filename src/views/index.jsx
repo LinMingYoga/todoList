@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AddInput from '../components/addInput';
 import ListItem from '../components/listItem';
+import $http from 'api.index'
 
 class todoList extends Component {
   constructor(props) {
@@ -16,6 +17,13 @@ class todoList extends Component {
       console.log(this.ul.querySelectorAll('li').length);
     })
   }
+
+  componentDidMount(){
+    $http.getType().then((res) => {
+      console.log(res)
+    })
+  }
+
   delItem(index){
     console.log(index);
     let list = this.state.list

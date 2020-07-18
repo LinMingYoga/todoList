@@ -14,6 +14,7 @@ class SearchInput extends Component {
       inputVal: e.target.value
     })
   } */
+  
   // ref绑定
   inputChange() {
     this.setState({
