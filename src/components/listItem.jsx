@@ -29,8 +29,8 @@ ListItem.propTypes = {
 }
 
 // 设置默认值
-// ListItem.defaultProps={
-//   avname: '波多野结衣'
-// }
+ListItem.defaultProps = {
+  content: '',
+}
  
 export default ListItem;

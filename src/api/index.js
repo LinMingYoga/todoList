@@ -30,7 +30,7 @@ axios.interceptors.request.use(
 // 获取列表
 function getType() {
   return axios.get('/getType').then((res) => {
-    return res
+    return res.data
   })
 }
 
