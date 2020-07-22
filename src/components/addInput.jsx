@@ -1,28 +1,33 @@
 import React, { Component } from 'react';
 import { Input, Button } from 'antd';
-import store from '../store'
 import '../assets/search.css';
+import store from '../store'
+import { changeInputAction } from "../store/actionCrearors";
 
 class SearchInput extends Component {
   constructor(props) {
     super(props);
     this.state = store.getState()
-    console.log(this.state);
+    this.storeChange = this.storeChange.bind(this)
+    store.subscribe(this.storeChange)
   }
 
-  /* inputChange(e) {
+  inputChange(e) {
     console.log(e.target.value)
-    this.setState({
-      inputVal: e.target.value
-    })
-  } */
+    const action = changeInputAction(e.target.value);
+    // const action = {
+    //   type: INPUT_CHANGE,
+    //   value: e.target.value,
+    // };
+    store.dispatch(action)
+  }
   
   // ref绑定
-  inputChange() {
-    this.setState({
-      inputVal: this.input.value
-    })
-  }
+  // inputChange() {
+  //   this.setState({
+  //     inputVal: this.input.value
+  //   })
+  // }
   addItem() {
     if (this.state.inputVal === '') {
       alert('请输入服务名称');
@@ -32,6 +37,10 @@ class SearchInput extends Component {
     this.setState({
       inputVal: ''
     })
+  }
+
+  storeChange () {
+    this.setState(store.getState())
   }
 
   render() { 
