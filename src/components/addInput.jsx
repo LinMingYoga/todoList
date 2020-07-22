@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { Input, Button } from 'antd';
+import store from '../store'
+import '../assets/search.css';
 
 class SearchInput extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      inputVal: ''
-    }
+    this.state = store.getState()
+    console.log(this.state);
   }
 
   /* inputChange(e) {
@@ -14,6 +16,7 @@ class SearchInput extends Component {
       inputVal: e.target.value
     })
   } */
+  
   // ref绑定
   inputChange() {
     this.setState({
@@ -32,12 +35,22 @@ class SearchInput extends Component {
   }
 
   render() { 
-    return ( 
-      <div>
-        <input placeholder="请输入服务名称" ref={(input) => {this.input = input}}  type="text" value={this.state.inputVal} onChange={this.inputChange.bind(this)}/>
-        <button onClick={this.addItem.bind(this)}>点击添加</button>
+    return (
+      <div className="lm-search">
+        <Input
+          placeholder={this.state.placeholder}
+          ref={(input) => {
+            this.input = input
+          }}
+          type="text"
+          value={this.state.inputVal}
+          onChange={this.inputChange.bind(this)}
+        />
+        <Button type="primary" onClick={this.addItem.bind(this)}>
+          点击添加
+        </Button>
       </div>
-     );
+    )
   }
 }
  

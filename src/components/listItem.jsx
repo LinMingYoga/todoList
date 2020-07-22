@@ -9,6 +9,9 @@ class ListItem extends Component {
   delItem(index) {
     this.props.delItem(index)
   }
+  componentWillUnmount() {
+    console.log('ddddd');
+  }
   render() { 
     return (
       <div>
@@ -26,8 +29,8 @@ ListItem.propTypes = {
 }
 
 // 设置默认值
-// ListItem.defaultProps={
-//   avname: '波多野结衣'
-// }
+ListItem.defaultProps = {
+  content: '',
+}
  
 export default ListItem;

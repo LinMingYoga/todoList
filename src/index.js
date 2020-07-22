@@ -4,8 +4,6 @@ import TodoList from './views/index';
 // import App from './App';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <TodoList />
-  </React.StrictMode>,
+  <TodoList />,
   document.getElementById('root')
 )
