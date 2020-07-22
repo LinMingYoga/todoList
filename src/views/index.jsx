@@ -4,7 +4,7 @@ import { List } from 'antd';
 import AddInput from '../components/addInput';
 import store from '../store'
 // import ListItem from '../components/listItem';
-import $http from '../api/index'
+// import $http from '../api/index'
 
 class todoList extends Component {
   constructor(props) {
@@ -28,15 +28,6 @@ class todoList extends Component {
       list: [...this.state.list, val]
     }, () => {
       console.log(this.ul.querySelectorAll('li').length);
-    })
-  }
-
-  componentDidMount(){
-    $http.getType().then((res) => {
-      console.log(res)
-      // this.setState({
-      //   list: res.data
-      // })
     })
   }
 
