@@ -9,6 +9,17 @@ class todoList extends Component {
       list: ['躺式采耳','刮痧', '足浴']
     }
   }
+
+  componentWillMount() {
+    console.log("componentWillMount ----------------- 组件将要挂载到页面上的时刻");
+  }
+  componentDidMount() {
+    console.log("componentDidMount ------------------ 组件挂载完成的时刻");
+  }
+  shouldComponentUpdate() {
+    console.log("shouldComponentUpdate---------------");
+    return true
+  }
   addBtn(val) {
     this.setState({
       list: [...this.state.list, val]
@@ -24,7 +35,8 @@ class todoList extends Component {
       list: list
     })
   }
-  render() { 
+  render() {
+    console.log('render---------组件挂载中');
     return ( 
       <div>
         <AddInput addHandle={this.addBtn.bind(this)}></AddInput>
