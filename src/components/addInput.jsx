@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Button } from 'antd';
+import { Input, Button, message } from "antd";
 import '../assets/search.css';
 import store from '../store'
 import { changeInputAction } from "../store/actionCrearors";
@@ -30,7 +30,7 @@ class SearchInput extends Component {
   // }
   addItem() {
     if (this.state.inputVal === '') {
-      alert('请输入服务名称');
+      message.error("请输入服务名称");
       return
     }
     this.props.addHandle(this.state.inputVal)
