@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import logo from "../logo.svg";
-import 'antd/dist/antd.css';
-import "../App.css";
-import { List } from 'antd';
-import AddInput from '../components/addInput';
 import store from '../store'
 import {addItemAction, delItemAction } from "../store/actionCrearors";
+import ToDoListUI from '../components/todoListUI'
 
 class todoList extends Component {
   constructor(props) {
@@ -18,18 +14,18 @@ class todoList extends Component {
   storeChange() {
     this.setState(store.getState());
   }
-  componentWillMount() {
-    console.log(
-      "componentWillMount ----------------- 组件将要挂载到页面上的时刻"
-    );
-  }
-  componentDidMount() {
-    console.log("componentDidMount ------------------ 组件挂载完成的时刻");
-  }
-  shouldComponentUpdate() {
-    console.log("shouldComponentUpdate---------------");
-    return true;
-  }
+  // componentWillMount() {
+  //   console.log(
+  //     "componentWillMount ----------------- 组件将要挂载到页面上的时刻"
+  //   );
+  // }
+  // componentDidMount() {
+  //   console.log("componentDidMount ------------------ 组件挂载完成的时刻");
+  // }
+  // shouldComponentUpdate() {
+  //   console.log("shouldComponentUpdate---------------");
+  //   return true;
+  // }
   addBtn(val) {
     // this.setState({
     //   list: [...this.state.list, val]
@@ -58,30 +54,12 @@ class todoList extends Component {
   }
   render() {
     return (
-      <div className="App">
-        {/* App-header */}
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <AddInput addHandle={this.addBtn.bind(this)}></AddInput>
-          <div style={{ width: "500px", marginTop: "10px" }}>
-            {/* <ul ref={ul => {this.ul = ul}}>
-            {this.state.list.map((item,index) => {
-              return <ListItem key={index} index={item.id} delItem={this.delItem.bind(this, index)} content={item.type}></ListItem>
-            })}
-          </ul> */}
-            <List
-              className="lm-list"
-              bordered
-              dataSource={this.state.list}
-              renderItem={(item, index) => (
-                <List.Item onClick={this.delItem.bind(this, index)}>
-                  {item.type}
-                </List.Item>
-              )}
-            />
-          </div>
-        </div>
-      </div>
+      <ToDoListUI
+        list={this.state.list}
+        inputVal={this.state.inputVal}
+        addBtn={this.addBtn.bind(this)}
+        delItem={this.delItem.bind(this)}
+      ></ToDoListUI>
     );
   }
 }
