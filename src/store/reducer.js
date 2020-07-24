@@ -5,15 +5,15 @@ const defaultState = {
   list: [
     {
       id: 1,
-      type: '躺式采耳',
+      type: 'React',
     },
     {
       id: 2,
-      type: '刮痧',
+      type: 'Vue',
     },
     {
       id: 3,
-      type: '足浴',
+      type: 'Angela',
     },
   ],
 } // 默认数据
