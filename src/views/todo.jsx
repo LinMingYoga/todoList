@@ -19,7 +19,7 @@ function ToDoList() {
       type: "Angela",
     }
   ];
-  const [inputVal, setInputVal] = useState('')
+  const [inputVal] = useState('')
   const [list, setList] = useState(listArr);
 
   const addBtn = (val) => {
@@ -35,6 +35,9 @@ function ToDoList() {
     // console.log(setList());
   };
   const delItem = (index) => {
+    const newList = list
+    newList.splice(index, 1);
+    setList([...newList])
     // console.log(index);
     // let list = this.state.list;
     // list.splice(index, 1);

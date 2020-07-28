@@ -13,7 +13,6 @@ class SearchInput extends Component {
   }
 
   inputChange(e) {
-    console.log(e.target.value)
     const action = changeInputAction(e.target.value);
     // const action = {
     //   type: INPUT_CHANGE,

@@ -66,7 +66,10 @@
  
 // export default todoList;
 
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, createContext} from 'react';
+import Counter from '../components/counter'
+const CountContext = createContext()
+
 function Demo() {
   const [count, setCount] = useState(0);
   function handleClick() {
@@ -80,6 +83,9 @@ function Demo() {
       <span>YOU CLICK {count} TIMES</span>
       <br />
       <button onClick={handleClick}>click me! please!</button>
+      <CountContext.Provider value={count}>
+        <Counter val={CountContext} />
+      </CountContext.Provider>
     </div>
   );
 }
