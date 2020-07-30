@@ -2,10 +2,10 @@ import Axios from 'axios'
 
 const axios = Axios.create()
 // const baseURL = window.location.origin // 自适应地址
-let baseURL = 'https://www.fastmock.site/mock/80066cac845e08479e98cdcaea201d56/lm-axios'
+let baseURL = 'https://v1.alapi.cn/api'
 axios.defaults.baseURL = baseURL
 
-axios.defaults.headers.post['Content-Type'] = 'application/json'
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 
 // 添加一个拦截器
 // config:可以进行请求头的位置，通过headers属性
@@ -29,7 +29,7 @@ axios.interceptors.request.use(
 
 // 获取列表
 function getType() {
-  return axios.get('/getType').then((res) => {
+  return axios.post(`tophub/get`, { type: 'zhihu'}).then((res) => {
     return res.data
   })
 }

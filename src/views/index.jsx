@@ -1,93 +1,40 @@
-// import React, { Component } from 'react';
-// import store from '../store'
-// import {addItemAction, delItemAction } from "../store/actionCrearors";
-// import ToDoListUI from '../components/todoListUI'
+import React, {useEffect, useState} from "react";
+import "antd/dist/antd.css";
+import "../App.css";
+import { Layout } from 'antd';
+import $http from '../api/index'
+// --------------
+import SearchInput from '../components/header/searchInput';
+import SinaNews from '../components/news/sina';
 
-// class todoList extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = store.getState();
-//     this.storeChange = this.storeChange.bind(this);
-//     store.subscribe(this.storeChange);
-//   }
+const { Footer, Content } = Layout;
 
-//   storeChange() {
-//     this.setState(store.getState());
-//   }
-//   // componentWillMount() {
-//   //   console.log(
-//   //     "componentWillMount ----------------- 组件将要挂载到页面上的时刻"
-//   //   );
-//   // }
-//   // componentDidMount() {
-//   //   console.log("componentDidMount ------------------ 组件挂载完成的时刻");
-//   // }
-//   // shouldComponentUpdate() {
-//   //   console.log("shouldComponentUpdate---------------");
-//   //   return true;
-//   // }
-//   addBtn(val) {
-//     // this.setState({
-//     //   list: [...this.state.list, val]
-//     // }, () => {
-//     //   console.log(this.ul.querySelectorAll('li').length);
-//     // })
-//     console.log("val", val);
-//     const action = addItemAction(val);
-//     store.dispatch(action);
-//   }
 
-//   delItem(index) {
-//     // console.log(index);
-//     // let list = this.state.list;
-//     // list.splice(index, 1);
-//     // this.setState({
-//     //   list: list,
-//     // });
-//     // const action = {
-//     //   type: DEL_ITEM,
-//     //   value: index,
-//     // };
-//     const action = delItemAction(index);
-//     store.dispatch(action)
-//     console.log('store', store.getState());
-//   }
-//   render() {
-//     return (
-//       <ToDoListUI
-//         list={this.state.list}
-//         inputVal={this.state.inputVal}
-//         addBtn={this.addBtn.bind(this)}
-//         delItem={this.delItem.bind(this)}
-//       ></ToDoListUI>
-//     );
-//   }
-// }
- 
-// export default todoList;
+function ToDoList () {
+  const [sinaNews, setSinaNews] = useState([])
 
-import React, {useState, useEffect, createContext} from 'react';
-import Counter from '../components/counter'
-const CountContext = createContext()
-
-function Demo() {
-  const [count, setCount] = useState(0);
-  function handleClick() {
-    return setCount(count + 1);
-  }
   useEffect(() => {
-    console.log('count', count);
-  })
+    $http.getType().then(res => {
+      console.log(res);
+      if(res.code === 200) {
+        setSinaNews(res.data.list.slice(0, 10))
+      }
+    })
+  }, [])
+
   return (
-    <div>
-      <span>YOU CLICK {count} TIMES</span>
-      <br />
-      <button onClick={handleClick}>click me! please!</button>
-      <CountContext.Provider value={count}>
-        <Counter val={CountContext} />
-      </CountContext.Provider>
+    <div className="lm-page">
+      <Layout>
+        <SearchInput></SearchInput>
+        <Content>
+          <div className="w">
+            <SinaNews data={sinaNews}></SinaNews>
+          </div>
+        </Content>
+        <Footer>Footer</Footer>
+      </Layout>
     </div>
   );
 }
 
-export default Demo
+export default ToDoList;

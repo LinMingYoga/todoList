@@ -39,3 +39,22 @@
     transform: rotate(360deg);
   }
 }
+
+/* ------------------------------------ */
+.lm-page {
+  width: 100%;
+  height: 100vh;
+  background-color: #282c34;
+}
+.lm-page .ant-layout-header {
+  background: none;
+}
+.lm-page .ant-layout-content {
+  width: 100%;
+  height: calc(100vh - 134px);
+  background-color: #ccc;
+}
+.w {
+  width: 1000px;
+  margin: 0 auto;
+}

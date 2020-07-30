@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import TodoList from './views/todo';
 // import App from './App';
-import App from './views/index';
+import TodoList from './views/index';
 
 ReactDOM.render(
-  < App / > ,
+  < TodoList / > ,
   document.getElementById('root')
 )
