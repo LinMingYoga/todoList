@@ -2,3 +2,7 @@
   width: 400px;
   background-color: #fff;
 }
+.ant-spin-container {
+  height: 450px;
+  overflow-y:scroll;
+}

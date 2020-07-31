@@ -28,12 +28,30 @@ axios.interceptors.request.use(
 )
 
 // 获取列表
-function getType() {
+function getZhihu() {
   return axios.post(`tophub/get`, { type: 'zhihu'}).then((res) => {
+    return res.data
+  })
+}
+function getWangyi() {
+  return axios.get(`/new/toutiao?start=1&num=50`).then((res) => {
+    return res.data
+  })
+}
+function getShichi() {
+  return axios.post(`/shici`, { type: 'all' }).then((res) => {
+    return res.data
+  })
+}
+function getHotWord() {
+  return axios.get(`/tophub/wiki`).then((res) => {
     return res.data
   })
 }
 
 export default {
-  getType
+  getZhihu,
+  getWangyi,
+  getShichi,
+  getHotWord
 }

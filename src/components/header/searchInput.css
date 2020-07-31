@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
 }
-.lm-search div {
-  width: 700px;
+.lm-search .lm-input {
+  width: 100%;
   display: flex;
 }
