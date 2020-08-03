@@ -51,12 +51,25 @@
 }
 .lm-page .ant-layout-content {
   width: 100%;
-  height: calc(100vh - 134px);
+  height: calc(100vh - 64px);
   background-color: #ccc;
 }
 .w {
   width: 1300px;
   margin: 0 auto;
+  height: 100%;
+}
+.lm-tabs {
+  width: 100%;
+}
+.spczCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.lm-poetry {
+  margin-top: 50px;
 }
 .lm-news {
   display: flex;

@@ -48,10 +48,16 @@ function getHotWord() {
     return res.data
   })
 }
+function getBg() {
+  return axios.post(`/bing`, { format: 'json' }).then((res) => {
+    return res.data
+  })
+}
 
 export default {
   getZhihu,
   getWangyi,
   getShichi,
-  getHotWord
+  getHotWord,
+  getBg
 }

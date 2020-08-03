@@ -1,39 +1,39 @@
-import React, {useEffect,useState} from "react";
+import React, {useEffect} from "react";
 import { Input, Layout, Button, Col, Row } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-import $http from '../../api'
+// import $http from '../../api'
 import './searchInput.css'
 
 
 const { Header } = Layout;
 
 function SearchInput(props) {
-  const [poetry, setPoetry] = useState('')
-  const [poetryTitle, setPoetryTitle] = useState('')
-  const [poet, setPoet] = useState('')
+  // const [poetry, setPoetry] = useState('')
+  // const [poetryTitle, setPoetryTitle] = useState('')
+  // const [poet, setPoet] = useState('')
 
-  function getPoetry() {
-    $http.getShichi().then(res => {
-      console.log('res', res)
-      if (res.code === 200) {
-        setPoet(res.data.author)
-        setPoetry(res.data.content)
-        setPoetryTitle(res.data.origin)
-      }
-    })
-  }
+  // function getPoetry() {
+  //   $http.getShichi().then(res => {
+  //     console.log('res', res)
+  //     if (res.code === 200) {
+  //       setPoet(res.data.author)
+  //       setPoetry(res.data.content)
+  //       setPoetryTitle(res.data.origin)
+  //     }
+  //   })
+  // }
 
   useEffect(()=>{
-    getPoetry()
+    // getPoetry()
   }, [])
   return (
     <Header>
       <div className="lm-search">
         <Row gutter={24} style={{width: '100%'}}>
           <Col className="gutter-row" span={8}>
-            <div className="lm-shichi">
+            {/* <div className="lm-shichi">
               <div><span>{poetry}</span>——《{poetryTitle}》 · {poet}</div>
-            </div>
+            </div> */}
           </Col>
           <Col className="gutter-row" span={8}>
             <div className="lm-input">

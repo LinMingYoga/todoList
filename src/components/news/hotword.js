@@ -16,7 +16,7 @@ function Hotword() {
 
   useEffect(() => {
     getHotword()
-  })
+  }, [])
 
   return (
     <div className = "sina" >

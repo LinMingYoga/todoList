@@ -1,33 +1,53 @@
 import React, {useEffect, useState} from "react";
 import "antd/dist/antd.css";
 import "../App.css";
-import { Layout } from 'antd';
+import { Layout, Alert } from 'antd'
 import { Tabs } from "antd";
-
-// import $http from '../api/index'
-// --------------
+// 引入API
+import $http from '../api/index'
+// 引入组件
 import SearchInput from '../components/header/searchInput';
 import SinaNews from '../components/news/sina';
 import Toutiao from '../components/news/toutiao';
 import Hotword from "../components/news/hotword";
 
-const { Footer, Content } = Layout;
+const { Content } = Layout;
 const { TabPane } = Tabs;
 
-function ToDoList () {
-  // const [sinaNews, setSinaNews] = useState([])
 
+function ToDoList () {
+
+  const [backgroundImg, setBackgroundImg] = useState('')
+  const [bgStyle, setBgStyle] = useState({})
+  const [poetry, setPoetry] = useState('')
+  // const [poetryTitle, setPoetryTitle] = useState('')
+  // const [poet, setPoet] = useState('')
+
+  function getPoetry() {
+    $http.getShichi().then((res) => {
+      console.log('res', res)
+      if (res.code === 200) {
+        // setPoet(res.data.author)
+        setPoetry(res.data.content)
+        // setPoetryTitle(res.data.origin)
+      }
+    })
+  }
+  function getBg() {
+    $http.getBg().then(res => {
+      console.log(res.data.url)
+      setBackgroundImg(res.data.url)
+      setBgStyle({
+        backgroundImage: `url('${backgroundImg}')`,
+      })
+    })
+  }
   useEffect(() => {
-    // $http.getZhihu().then((res) => {
-    //   console.log(res);
-    //   if (res.code === 200) {
-    //     setSinaNews(res.data.list);
-    //   }
-    // });
-    // $http.getWangyi().then(res => {
-    //   console.log('res', res);
-    // })
-  }, [])
+    return getBg()
+  })
+  useEffect(() => {
+    getPoetry()
+  },[])
   function callback(key) {
     console.log(key);
   }
@@ -35,29 +55,34 @@ function ToDoList () {
     <div className="lm-page">
       <Layout>
         <SearchInput></SearchInput>
-        <Content>
+        <Content style={bgStyle}>
           <div className="w">
-            <Tabs defaultActiveKey="1" onChange={callback}>
-              <TabPane tab="实时热门" key="1">
-                <div className="lm-news">
-                  <SinaNews></SinaNews>
-                  <Toutiao></Toutiao>
-                  <Hotword></Hotword>
-                </div>
-              </TabPane>
-              <TabPane tab="网易新闻" key="2">
-                Content of Tab Pane 2
-              </TabPane>
-              <TabPane tab="Tab 3" key="3">
-                Content of Tab Pane 3
-              </TabPane>
-            </Tabs>
+            <div className="lm-main spczCenter">
+              <div className="lm-poetry">
+                <Alert message={poetry} type="info" />
+              </div>
+              <Tabs className="lm-tabs" defaultActiveKey="1" onChange={callback}>
+                <TabPane tab="实时热门" key="1">
+                  <div className="lm-news">
+                    <SinaNews></SinaNews>
+                    <Toutiao></Toutiao>
+                    <Hotword></Hotword>
+                  </div>
+                </TabPane>
+                <TabPane tab="Tab 2" key="2">
+                  Content of Tab Pane 2
+                </TabPane>
+                <TabPane tab="Tab 3" key="3">
+                  Content of Tab Pane 3
+                </TabPane>
+              </Tabs>
+            </div>
           </div>
         </Content>
-        <Footer>@LinMing</Footer>
+        {/* <Footer>@LinMing</Footer> */}
       </Layout>
     </div>
-  );
+  )
 }
 
 export default ToDoList;
