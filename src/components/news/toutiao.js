@@ -8,9 +8,7 @@ function Toutiao(props) {
   function getWangyi() {
     $http.getNews().then(res => {
       console.log('res', res)
-      if (res.code === 200) {
-        setData(res.data)
-      }
+      setData(res.data.list)
     })
   }
 
@@ -19,20 +17,17 @@ function Toutiao(props) {
   }, [])
 
   return (
-    <div className = "sina" >
+    <div className="sina">
       <List
-        header={<div style={{paddingLeft: '10px'}}>CCTV-新闻</div>}
+        header={<div style={{ paddingLeft: '10px' }}>CCTV-新闻</div>}
         itemLayout="vertical"
         dataSource={data}
-        renderItem={item => (
-          <List.Item 
-          actions={[ <div>{item.time}</div> ]}
-          extra={ <img width={272} alt={item.title} src={item.imgsrc} /> }
-          >
+        renderItem={(item) => (
+          <List.Item actions={[<div>{item.focus_date}</div>]} extra={<img width={200} alt={item.title} src={item.image} />}>
             <List.Item.Meta
               // img={<img width={272} alt="logo" src={item.imgSrc} />}
-              title={<a href={item.link}>{item.title}</a>}
-              description={item.value}
+              title={<a href={item.url}>{item.title}</a>}
+              description={item.brief}
             />
           </List.Item>
         )}
