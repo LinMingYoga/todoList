@@ -34,20 +34,21 @@ function ToDoList () {
     })
   }
   function getBg() {
-    $http.getBg().then(res => {
-      console.log(res.data.url)
-      setBackgroundImg(res.data.url)
-      setBgStyle({
-        backgroundImage: `url('${backgroundImg}')`,
-      })
+    return new Promise((resolve, reject) => {
+      $http.getBg().then((res) => {
+        resolve(res.data.url)
+      });
     })
   }
   useEffect(() => {
-    return getBg()
+    getPoetry();
+    getBg().then(res => {
+      setBackgroundImg(res);
+      setBgStyle({
+        backgroundImage: `url('${backgroundImg}')`,
+      })
   })
-  useEffect(() => {
-    getPoetry()
-  },[])
+  }, [backgroundImg])
   function callback(key) {
     console.log(key);
   }
@@ -64,9 +65,9 @@ function ToDoList () {
               <Tabs className="lm-tabs" defaultActiveKey="1" onChange={callback}>
                 <TabPane tab="实时热门" key="1">
                   <div className="lm-news">
-                    <SinaNews></SinaNews>
+                    {/* <SinaNews></SinaNews> */}
                     <Toutiao></Toutiao>
-                    <Hotword></Hotword>
+                    {/* <Hotword></Hotword> */}
                   </div>
                 </TabPane>
                 <TabPane tab="Tab 2" key="2">

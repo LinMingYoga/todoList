@@ -1,8 +1,12 @@
 .sina {
-  width: 400px;
+  /* width: 400px; */
+  width: 100%;
   background-color: #fff;
 }
 .ant-spin-container {
-  height: 450px;
+  height: 600px;
   overflow-y:scroll;
+}
+.ant-list-item {
+  padding: 10px;
 }
