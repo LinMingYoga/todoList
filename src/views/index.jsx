@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from "react";
 import "antd/dist/antd.css";
 import "../App.css";
-import { Layout, Alert } from 'antd'
+import "../assets/rest.css";
+import { Layout } from 'antd'
 import { Tabs } from "antd";
 // 引入API
 import $http from '../api/index'
 // 引入组件
 import SearchInput from '../components/header/searchInput';
-import SinaNews from '../components/news/sina';
+// import SinaNews from '../components/news/sina';
 import Toutiao from '../components/news/toutiao';
-import Hotword from "../components/news/hotword";
+import NavLink from '../components/navigation/index';
+// import Hotword from "../components/news/hotword";
 
 const { Content } = Layout;
 const { TabPane } = Tabs;
@@ -19,7 +21,7 @@ function ToDoList () {
 
   const [backgroundImg, setBackgroundImg] = useState('')
   const [bgStyle, setBgStyle] = useState({})
-  const [poetry, setPoetry] = useState('')
+  // const [poetry, setPoetry] = useState('')
   // const [poetryTitle, setPoetryTitle] = useState('')
   // const [poet, setPoet] = useState('')
 
@@ -28,7 +30,7 @@ function ToDoList () {
       console.log('res', res)
       if (res.code === 200) {
         // setPoet(res.data.author)
-        setPoetry(res.data.content)
+        // setPoetry(res.data.content)
         // setPoetryTitle(res.data.origin)
       }
     })
@@ -59,9 +61,6 @@ function ToDoList () {
         <Content style={bgStyle}>
           <div className="w">
             <div className="lm-main spczCenter">
-              <div className="lm-poetry">
-                <Alert message={poetry} type="info" />
-              </div>
               <Tabs className="lm-tabs" defaultActiveKey="1" onChange={callback}>
                 <TabPane tab="实时热门" key="1">
                   <div className="lm-news">
@@ -70,8 +69,8 @@ function ToDoList () {
                     {/* <Hotword></Hotword> */}
                   </div>
                 </TabPane>
-                <TabPane tab="Tab 2" key="2">
-                  Content of Tab Pane 2
+                <TabPane tab="常用" key="2">
+                  <NavLink></NavLink>
                 </TabPane>
                 <TabPane tab="Tab 3" key="3">
                   Content of Tab Pane 3

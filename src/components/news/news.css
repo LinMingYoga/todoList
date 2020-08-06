@@ -1,10 +1,13 @@
 .sina {
   /* width: 400px; */
   width: 100%;
+}
+.sina .ant-list {
   background-color: #fff;
 }
 .ant-spin-container {
-  height: 600px;
+  height: auto;
+  max-height: 600px;
   overflow-y:scroll;
 }
 .ant-list-item {

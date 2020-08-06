@@ -1,0 +1,29 @@
+.lm-navigation .lm-navigation-header {
+  /*  */
+}
+.lm-navigation-header li {
+  display: flex;
+  list-style: none;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+}
+.lm-navigation-header li > span {
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+.active {
+  /* background-color: #1890ff !important; */
+  color: #fff;
+}
+.lm-navigation-header li> .lm-navigation-con {
+  margin-left: 10px;
+}
+.lm-navigation-header li > .lm-navigation-con span {
+  cursor: pointer;
+  /* margin: 0 10px; */
+  margin-left: 10px;
+  padding: 5px;
+  background-color: #1890ff;
+  color: #fff;
+}
