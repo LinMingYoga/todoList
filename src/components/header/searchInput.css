@@ -12,3 +12,6 @@
   width: 100%;
   display: flex;
 }
+.lm-input .ant-select {
+  width: 500px;
+}

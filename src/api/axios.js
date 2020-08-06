@@ -1,7 +1,5 @@
 import axios from 'axios'
 import qs from 'qs'
-// import { Toast } from 'vant'
-
 function Factory({
   baseURL
 }, callFail) {
@@ -15,15 +13,6 @@ function Factory({
 
   $http.interceptors.request.use(config => {
     const headers = {}
-    // else if (userInfo.appId) {
-    //   headers.appId = userInfo.appId
-    //   headers.appSecret = userInfo.appSecret
-    // } else {
-    //   // 没有登录标识
-    //   let notLogin = '请先登录操作'
-    //   alert(notLogin)
-    //   return Promise.reject(notLogin)
-    // }
     config.headers = {
       ...config.headers,
       ...headers
@@ -45,18 +34,14 @@ function Factory({
     if (callFail(response.data)) {
       const errMsg = response.data.errMsg ||
         response.data.resultMsg || '未知错误，请重新尝试！'
-      alert(errMsg)
-
+      // alert(errMsg)
       return Promise.reject(errMsg)
     }
-
     return response.data
   }, error => {
     alert('未知错误，请重新尝试！')
     return Promise.reject(error)
   })
-
   return $http
 }
-
 export default Factory
