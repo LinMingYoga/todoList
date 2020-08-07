@@ -25,7 +25,7 @@ function NavLink() {
     getLinks()
   }, [])
   const lis = links.map((item, index) => {
-  return <li className="active" key={index}><span>{item.title}</span><div className="lm-navigation-con">{item.list.map((item, index) => {return <span key={index}>{item.title}</span>})}</div></li>
+  return <li className="active" key={index}><span>{item.title}</span><div className="lm-navigation-con">{item.list.map((item, index) => {return <span key={index}><a href={item.href}>{item.title}</a></span>})}</div></li>
   })
   return (
     <div className="lm-navigation">

@@ -3,6 +3,7 @@ import { AutoComplete, Layout, Button, Col, Row } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import $http from '../../api'
 import './searchInput.css'
+const logoSvg = require("../../logo.svg")
 
 
 const { Header } = Layout;
@@ -45,10 +46,9 @@ function SearchInput(props) {
     <Header>
       <div className="lm-search">
         <Row gutter={24} style={{width: '100%'}}>
-          <Col className="gutter-row" span={8}>
-          </Col>
-          <Col className="gutter-row" span={8}>
-            <div className="lm-input">
+          <Col style={{margin: '0 auto'}} className="gutter-row" span={8}>
+            <div className="lm-input" style={{width: '500px'}}>
+              <img width="50px" src={logoSvg} alt="logo" />
               <AutoComplete
                 onSelect={onSelect}
                 onSearch={myoptions}
@@ -62,11 +62,6 @@ function SearchInput(props) {
                 搜索
               </Button>
             </div>
-          </Col>
-          <Col className="gutter-row" span={8}>
-            {/* <div className="lm-shichi">
-              <div><span>蓟庭萧瑟故人稀， 何处登高且送归。</span><span>——《冬日归旧山》 · 李白</span></div>
-            </div> */}
           </Col>
         </Row>
       </div>

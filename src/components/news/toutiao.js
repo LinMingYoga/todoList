@@ -1,7 +1,8 @@
-import React, {useState,useEffect} from 'react';
-import { List, Radio  } from 'antd';
+import React, {useState,useEffect} from 'react'
+import { List, Radio  } from 'antd'
 import $http from '../../api/index'
-import './news.css';
+import './news.css'
+import QueueAnim from 'rc-queue-anim'
 
 function Toutiao(props) {
   // state
@@ -17,38 +18,50 @@ function Toutiao(props) {
   }, [])
   const items = [
     {
-      label:'新闻',
-      value: 'news'
+      label: '新闻',
+      value: 'news',
     },
     {
-      label:'国内',
-      value: 'china'
+      label: '国内',
+      value: 'china',
     },
     {
-      label:'国际',
-      value: 'world'
+      label: '国际',
+      value: 'world',
     },
     {
-      label:'社会',
-      value: 'society'
+      label: '社会',
+      value: 'society',
     },
     {
-      label:'法治',
-      value: 'law'
+      label: '法治',
+      value: 'law',
     },
     {
-      label:'文娱',
-      value: 'ent'
+      label: '文娱',
+      value: 'ent',
     },
     {
-      label:'科技',
-      value: 'tech'
+      label: '科技',
+      value: 'tech',
     },
     {
-      label:'生活',
-      value: 'life'
+      label: '生活',
+      value: 'life',
     },
-  ];
+    {
+      label: '经济',
+      value: 'economy',
+    },
+    {
+      label: '教育',
+      value: 'edu',
+    },
+    {
+      label: '健康',
+      value: 'health',
+    }
+  ]
   // methods
   /* start 函数防抖 */
   var timeout = null
@@ -66,27 +79,30 @@ function Toutiao(props) {
   })
   return (
     <div className="sina">
-      <div className="lm-tabs">
-        <Radio.Group onChange={selcetNews} buttonStyle = "solid"
-        defaultValue = "news"
-        size = "large" >
-          {tabs}
-        </Radio.Group>
-      </div>
-      <List
-        header={<div style={{ paddingLeft: '10px' }}>CCTV-新闻</div>}
-        itemLayout="vertical"
-        dataSource={data}
-        renderItem={(item) => (
-          <List.Item actions={[<div>{item.focus_date}</div>]} extra={<img width={200} alt={item.title} src={item.image} />}>
-            <List.Item.Meta
-              // img={<img width={272} alt="logo" src={item.imgSrc} />}
-              title={<a href={item.url}>{item.title}</a>}
-              description={item.brief}
-            />
-          </List.Item>
-        )}
-      />
+      <QueueAnim style={{ width: '100%' }} delay={500} className="queue-simple">
+        <div className="lm-tabs">
+          <Radio.Group onChange={selcetNews} buttonStyle="solid" defaultValue="news" size="large">
+            {tabs}
+          </Radio.Group>
+        </div>
+        <List
+          // header={<div style={{ paddingLeft: '10px' }}>CCTV-新闻</div>}
+          itemLayout="vertical"
+          dataSource={data}
+          renderItem={(item) => (
+            <List.Item
+              actions={[<div>{item.focus_date}</div>]}
+              extra={<img width={200} alt={item.title} src={item.image} />}
+            >
+              <List.Item.Meta
+                // img={<img width={272} alt="logo" src={item.imgSrc} />}
+                title={<a href={item.url}>{item.title}</a>}
+                description={item.brief}
+              />
+            </List.Item>
+          )}
+        />
+      </QueueAnim>
     </div>
   )
 }

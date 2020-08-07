@@ -39,7 +39,7 @@
   display: flex;
   justify-content: flex-start
 }
-.lm-navigation-header li > .lm-navigation-con span {
+.lm-navigation-header li > .lm-navigation-con a {
   display: block;
   width: 90px;
   cursor: pointer;
